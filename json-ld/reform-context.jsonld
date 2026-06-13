@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "reform": "https://www.reform.app/vocab#",
+    "aid": "https://apis.io/vocab#aid",
+    "baseURL": "https://apis.io/vocab#baseURL",
+    "Form": "reform:Form",
+    "FormSubmission": "reform:FormSubmission",
+    "Webhook": "reform:Webhook",
+    "FormDefinition": "reform:FormDefinition",
+    "FormField": "reform:FormField",
+    "LeadCapture": "reform:LeadCapture",
+    "Integration": "reform:Integration",
+    "CRMIntegration": "reform:CRMIntegration",
+    "formId": "reform:formId",
+    "submissionId": "reform:submissionId",
+    "webhookUrl": "reform:webhookUrl",
+    "fieldType": "reform:fieldType",
+    "fieldLabel": "reform:fieldLabel",
+    "fieldRequired": "reform:fieldRequired",
+    "submittedAt": "reform:submittedAt",
+    "integrationProvider": "reform:integrationProvider",
+    "provider": {
+      "@id": "reform:provider",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@type": "WebAPI",
+      "@id": "https://api.reform.app",
+      "name": "Reform Forms API",
+      "description": "REST API for creating and managing form definitions, collecting form submissions, triggering webhooks, and integrating forms with third-party platforms including HubSpot, Salesforce, Zapier, and Google Sheets.",
+      "url": "https://www.reform.app/",
+      "documentation": "https://docs.reform.app/",
+      "aid": "reform",
+      "baseURL": "https://api.reform.app",
+      "keywords": [
+        "forms",
+        "form builder",
+        "submissions",
+        "webhooks",
+        "lead generation",
+        "headless forms",
+        "no-code",
+        "integrations",
+        "CRM",
+        "HubSpot",
+        "Salesforce",
+        "Zapier",
+        "Google Sheets"
+      ]
+    }
+  ]
+}
