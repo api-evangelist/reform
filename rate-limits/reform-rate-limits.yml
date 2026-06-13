@@ -1,0 +1,60 @@
+name: Reform Rate Limits
+description: Rate limiting information for the Reform Forms API. Reform recommends implementing request batching, caching, and asynchronous processing to handle rate limits. Specific numeric limits are not publicly documented; consult Reform support or documentation for current thresholds.
+version: '0.1'
+url: https://docs.reform.app/
+limits:
+  - name: API Requests
+    description: General REST API rate limit applied per API key. Reform recommends monitoring rate limits and implementing retry logic with exponential backoff.
+    scope: api_key
+    strategy: token_bucket
+    enforcement: HTTP 429 Too Many Requests
+    recommended_practices:
+      - Use request batching to reduce call frequency
+      - Implement caching for repeated read operations
+      - Use asynchronous processing for high-traffic scenarios
+      - Monitor rate limit headers in API responses
+      - Implement exponential backoff on 429 responses
+
+  - name: Webhook Delivery
+    description: Webhook events are delivered per form submission. Reform recommends idempotent webhook handlers to handle potential duplicate deliveries.
+    scope: per_form
+    strategy: event_driven
+    recommended_practices:
+      - Implement idempotent handlers
+      - Acknowledge webhooks quickly (within 5 seconds)
+      - Process webhook payloads asynchronously
+
+  - name: Form Submissions
+    description: Form submission throughput is subject to per-account rate controls. Unlimited response storage is provided across all paid plans.
+    scope: account
+    storage: unlimited
+    plans_with_submissions:
+      - Basic
+      - Pro
+
+  - name: Integration API Limits
+    description: Third-party integration rate limits (HubSpot, Salesforce, Google Sheets) are governed by the respective platforms. Reform recommends queuing and batching strategies to avoid exceeding downstream limits.
+    scope: integration
+    external_dependencies:
+      - name: HubSpot API
+        limit_type: per_second
+        notes: Reform blog notes strategies for scaling without exceeding HubSpot API limits
+      - name: Salesforce API
+        limit_type: per_day
+        notes: OAuth and exact field mapping recommended for Salesforce integration
+      - name: Zapier
+        limit_type: task_based
+        notes: Zapier task limits apply based on Zapier plan
+authentication:
+  methods:
+    - type: API Key
+      location: header
+      description: API keys passed in request headers for authentication
+    - type: OAuth
+      description: OAuth tokens supported for complex integration scenarios
+    - type: Basic Auth
+      description: Username and password authentication supported where applicable
+  security_recommendations:
+    - Store credentials in encrypted environment variables
+    - Never expose API keys in client-side code
+    - Rotate API keys regularly

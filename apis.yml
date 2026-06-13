@@ -1,0 +1,66 @@
+name: Reform
+description: Reform is a developer-first, conversion-optimized form builder with a REST API for creating type-safe forms, managing form definitions, collecting submissions, and embedding forms in web applications including React. It offers headless form capabilities, webhooks, and deep integrations with CRMs and marketing platforms.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+aid: reform
+type: Index
+tags:
+  - Forms
+  - Form Builder
+  - Lead Generation
+  - Headless Forms
+  - Webhooks
+  - No-Code
+  - Integrations
+  - CRM
+apis:
+  - name: Reform Forms API
+    description: REST API for creating and managing form definitions, collecting form submissions, triggering webhooks, and integrating forms with third-party platforms including HubSpot, Salesforce, Zapier, and Google Sheets.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.reform.app/
+    baseURL: https://api.reform.app
+    tags:
+      - Forms
+      - Submissions
+      - Webhooks
+      - Lead Generation
+    properties:
+      - type: Documentation
+        url: https://docs.reform.app/
+      - type: Pricing
+        url: https://www.reform.app/pricing
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/plans/reform-plans-pricing.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/rate-limits/reform-rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/finops/reform-finops.yml
+common:
+  - type: Website
+    url: https://www.reform.app/
+  - type: Documentation
+    url: https://docs.reform.app/
+  - type: Blog
+    url: https://www.reform.app/blog
+  - type: Pricing
+    url: https://www.reform.app/pricing
+  - type: Features
+    url: https://www.reform.app/features
+  - type: Templates
+    url: https://www.reform.app/templates
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/reformapp
+  - type: X
+    url: https://x.com/heyreform
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/plans/reform-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/rate-limits/reform-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/finops/reform-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

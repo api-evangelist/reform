@@ -1,0 +1,95 @@
+name: Reform Plans and Pricing
+description: Pricing plans for Reform, a conversion-optimized form builder offering free, Basic, and Pro tiers with varying levels of features, integrations, and team access.
+version: '0.1'
+url: https://www.reform.app/pricing
+plans:
+  - name: Free
+    description: Basic form building access for individual users exploring the platform. Forms cannot be published or shared publicly on this tier.
+    price:
+      amount: 0
+      currency: USD
+      period: month
+    features:
+      - Basic form building
+      - Reform branding required
+      - No publishing or public sharing
+      - No integrations
+    limits:
+      forms: unlimited_drafts
+      submissions: 0
+      team_members: 1
+      integrations: 0
+
+  - name: Basic
+    description: Ideal for early-stage startups and SMBs with simple lead generation funnels. Includes live form publishing, embedding, and basic integrations.
+    price:
+      amount: 15
+      currency: USD
+      period: month
+    annual:
+      amount: 150
+      currency: USD
+      period: year
+      savings_percent: 16
+    features:
+      - Unlimited form responses
+      - All basic block types
+      - Remove Reform branding
+      - Custom thank you pages and redirects
+      - Publish, embed, and share live forms
+      - reCAPTCHA spam protection
+      - Headless forms for design control
+      - Basic integrations (Google Sheets, Notion, Zapier)
+      - Email support
+    limits:
+      forms: unlimited
+      submissions: unlimited
+      team_members: 1
+      integrations: basic
+
+  - name: Pro
+    description: Best for scaling GTM teams running advanced lead generation workflows. Includes team collaboration, conditional logic, webhooks, and pro integrations.
+    price:
+      amount: 35
+      currency: USD
+      period: month
+    annual:
+      amount: 350
+      currency: USD
+      period: year
+      savings_percent: 16
+    trial:
+      days: 14
+      requires_credit_card: true
+    features:
+      - Everything in Basic
+      - Team access and collaboration
+      - Pro block types (file upload, embeds)
+      - Conditional logic with multiple outcomes
+      - Save drafts with email return links
+      - View incomplete form responses
+      - Advanced CSS and JavaScript customization
+      - Webhooks for custom integrations
+      - Pro integrations (ConvertKit, HubSpot, Close)
+      - Salesforce integration (coming soon)
+    limits:
+      forms: unlimited
+      submissions: unlimited
+      team_members: unlimited
+      integrations: pro
+
+  - name: Done For You
+    description: Custom forms designed and built by FunnelEnvy conversion experts. Enterprise-grade service for teams wanting a fully managed form conversion solution.
+    price:
+      amount: custom
+      currency: USD
+      period: custom
+    features:
+      - Custom form design and build
+      - Conversion optimization by experts
+      - Managed by FunnelEnvy
+    limits:
+      forms: custom
+      submissions: unlimited
+      team_members: custom
+      integrations: custom

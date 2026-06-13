@@ -1,0 +1,102 @@
+name: Reform FinOps Framework
+description: FOCUS-aligned FinOps cost management guidance for teams using the Reform Forms API and platform. Covers cost allocation, optimization strategies, and budget management across Reform's pricing tiers.
+version: '1.0'
+framework: FinOps Framework 1.0
+focus_aligned: true
+url: https://www.reform.app/pricing
+currency: USD
+
+cost_model:
+  type: subscription
+  billing_periods:
+    - monthly
+    - annual
+  annual_discount_percent: 16
+  tiers:
+    - name: Free
+      monthly_cost: 0
+      annual_cost: 0
+      use_case: Prototyping and evaluation
+    - name: Basic
+      monthly_cost: 15
+      annual_cost: 150
+      use_case: Small teams, simple lead-gen funnels
+    - name: Pro
+      monthly_cost: 35
+      annual_cost: 350
+      use_case: Scaling GTM teams, advanced workflows
+    - name: Done For You
+      monthly_cost: custom
+      annual_cost: custom
+      use_case: Managed enterprise form conversion
+
+cost_allocation:
+  dimensions:
+    - name: Plan Tier
+      description: Cost varies by subscription tier (Free, Basic, Pro, Done For You)
+      tags:
+        - reform:plan
+    - name: Team
+      description: Pro plan enables team access; allocate cost across departments or business units using the team that owns the Reform account
+      tags:
+        - reform:team
+    - name: Form Project
+      description: Costs can be attributed to specific lead generation campaigns or product areas via form naming conventions
+      tags:
+        - reform:project
+        - reform:campaign
+    - name: Integration Usage
+      description: Third-party integration costs (Zapier tasks, HubSpot API calls, Salesforce data volumes) are separate from Reform subscription costs
+      tags:
+        - reform:integration
+
+optimization:
+  strategies:
+    - name: Annual Billing
+      description: Switch from monthly to annual billing to save 16% ($30/year on Basic, $70/year on Pro)
+      savings_potential: high
+      effort: low
+
+    - name: Right-Size Plan
+      description: Evaluate actual usage of Pro features (webhooks, conditional logic, file uploads, team seats) before upgrading. Teams using only basic integrations can stay on the Basic plan at $15/month.
+      savings_potential: high
+      effort: medium
+
+    - name: Consolidate Accounts
+      description: Use a single Pro account with team access rather than multiple Basic accounts for the same organization. Pro at $35/month is more cost-effective than 3+ Basic accounts at $45+/month.
+      savings_potential: medium
+      effort: low
+
+    - name: Manage Integration Costs
+      description: Reform webhooks (Pro plan) can replace Zapier for direct integrations, reducing third-party task costs. Evaluate cost of Zapier vs. direct webhook integration.
+      savings_potential: medium
+      effort: medium
+
+    - name: Use Free Trial
+      description: Utilize the 14-day Pro trial to validate advanced features before committing to Pro subscription.
+      savings_potential: low
+      effort: low
+
+budgeting:
+  guidance:
+    - Subscription cost is predictable and flat-rate; no per-submission or per-response charges on paid plans
+    - Budget $15-35/month per team depending on feature requirements
+    - Factor in downstream integration costs (Zapier, HubSpot, Salesforce) as separate line items
+    - Annual billing provides cost certainty and eliminates monthly billing variability
+  alerts:
+    - Monitor integration platform costs separately as they scale with submission volume
+    - Track Zapier task consumption if using Zapier integration
+    - Review team member count if using Pro plan team features
+
+reporting:
+  recommended_tags:
+    - reform:plan
+    - reform:team
+    - reform:project
+    - reform:campaign
+    - reform:integration
+  cost_centers:
+    - Marketing (lead generation forms)
+    - Sales (CRM integration forms)
+    - Product (embedded forms, headless integration)
+    - Engineering (API and webhook integrations)
