@@ -1,116 +1,13 @@
 {
-  "provider": "reform",
-  "blogUrl": "https://www.reform.app/blog",
-  "lastFetched": "2026-06-13",
-  "posts": [
-    {
-      "title": "How to Reduce Form Abandonment: Insights from Zuko Analytics",
-      "url": "https://www.reform.app/blog/how-to-reduce-form-abandonment-insights-from-zuko-analytics",
-      "category": "Form Optimization"
-    },
-    {
-      "title": "How Inline Validation Improves Form UX",
-      "url": "https://www.reform.app/blog/inline-validation-improves-form-ux",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "How API Triggers Improve Lead Quality",
-      "url": "https://www.reform.app/blog/api-triggers-improve-lead-quality",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Best Practices for Salesforce API Form Integration",
-      "url": "https://www.reform.app/blog/salesforce-api-form-integration-best-practices",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Global DPIA Standards for Tech Startups",
-      "url": "https://www.reform.app/blog/global-dpia-standards-tech-startups",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "How to Route Facebook Leads to Your CRM",
-      "url": "https://www.reform.app/blog/route-facebook-leads-crm",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "5 Ways to Handle Duplicate HubSpot Form Entries",
-      "url": "https://www.reform.app/blog/duplicate-hubspot-form-entries-methods",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "5 Steps to Troubleshoot Form Integration Errors",
-      "url": "https://www.reform.app/blog/troubleshoot-form-integration-errors",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "7 Metrics for Benchmarking Lead Nurturing Workflows",
-      "url": "https://www.reform.app/blog/lead-nurturing-workflows-benchmarking-metrics",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "5 Steps to Build a Custom Attribution Model",
-      "url": "https://www.reform.app/blog/custom-attribution-model-steps",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "How Secure Form Hosting Boosts Lead Trust",
-      "url": "https://www.reform.app/blog/secure-form-hosting-boosts-lead-trust",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Lead Routing Challenges in Hospitality and Solutions",
-      "url": "https://www.reform.app/blog/lead-routing-challenges-hospitality-solutions",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Key KPIs for Scalable Lead Nurturing Content",
-      "url": "https://www.reform.app/blog/kpis-for-scalable-lead-nurturing-content",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Real-Time Interaction Data for Lead Scoring Success",
-      "url": "https://www.reform.app/blog/real-time-interaction-data-for-lead-scoring-success",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "How PCI DSS 4.0 Affects SAQ A for Payment Forms",
-      "url": "https://www.reform.app/blog/pci-dss-4-0-saq-a-payment-forms",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Why Cross-Platform Backup Matters for SaaS",
-      "url": "https://www.reform.app/blog/cross-platform-backup-saas",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Checklist for Vendor Cybersecurity Awareness",
-      "url": "https://www.reform.app/blog/vendor-cybersecurity-awareness-checklist",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Top Tools for ISO 27001 Documentation Management",
-      "url": "https://www.reform.app/blog/best-iso-27001-documentation-management-tools",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "How to Build a Vendor Risk Scoring Framework",
-      "url": "https://www.reform.app/blog/how-to-build-vendor-risk-scoring-framework",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "Scaling Forms Without Exceeding HubSpot API Limits",
-      "url": "https://www.reform.app/blog/scaling-forms-without-exceeding-hubspot-api-limits",
-      "category": "Growth Insights"
-    },
-    {
-      "title": "AI Privacy Compliance: Tools and Strategies",
-      "url": "https://www.reform.app/blog/ai-privacy-compliance-tools-strategies",
-      "category": "Growth Insights"
-    }
-  ],
   "repo": "reform",
   "feeds": [
+    {
+      "source": "https://www.reform.app/blog/rss.xml",
+      "feed_url": "https://www.reform.app/blog/rss.xml",
+      "title": "",
+      "saved": 11,
+      "method": "feed"
+    },
     {
       "source": "https://docs.reform.app/",
       "feed_url": "https://docs.reform.app/",
@@ -119,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 26
 }
