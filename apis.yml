@@ -39,6 +39,8 @@ apis:
       - type: FinOps
         url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/finops/reform-finops.yml
 common:
+  - type: DomainSecurity
+    url: security/reform-domain-security.yml
   - type: Website
     url: https://www.reform.app/
   - type: Documentation
