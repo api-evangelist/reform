@@ -1,6 +1,18 @@
 name: Reform
 description: Reform is a developer-first, conversion-optimized form builder with a REST API for creating type-safe forms, managing form definitions, collecting submissions, and embedding forms in web applications including React. It offers headless form capabilities, webhooks, and deep integrations with CRMs and marketing platforms.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/reform.png
 url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
