@@ -1,5 +1,5 @@
 name: Reform
-description: Reform is a developer-first, conversion-optimized form builder with a REST API for creating type-safe forms, managing form definitions, collecting submissions, and embedding forms in web applications including React. It offers headless form capabilities, webhooks, and deep integrations with CRMs and marketing platforms.
+description: Reform is a conversion-focused, no-code form builder for B2B and SaaS teams, acquired by conversion-rate-optimization agency FunnelEnvy. It builds multi-step forms with conditional logic, lead qualification and enrichment, and syncs submissions to CRMs and marketing platforms. Reform publishes no REST API, SDK or OpenAPI definition; its integration surface is three published pieces — a signed outbound webhook (form.submitted, HMAC-SHA256), a CDN-hosted browser embed loader with a parent-page event API, and a headless mode that posts your own HTML form to Reform using answers[block-id] field naming.
 accessModel:
   pricing: freemium
   onboarding: unknown
@@ -15,7 +15,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/reform.png
 url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-14'
 specificationVersion: '0.19'
 aid: reform
 type: Index
@@ -28,22 +28,39 @@ tags:
   - No-Code
   - Integrations
   - CRM
+  - Conversion Rate Optimization
+  - Embeddable Components
 apis:
-  - name: Reform Forms API
-    description: REST API for creating and managing form definitions, collecting form submissions, triggering webhooks, and integrating forms with third-party platforms including HubSpot, Salesforce, Zapier, and Google Sheets.
+  - name: Reform Forms
+    description: Reform's public integration surface. It is not a REST management API — no endpoint exists to create, read or update forms and submissions. What Reform publishes is the hosted form host (forms.reform.app), which serves published forms and receives headless HTML form POSTs using answers[block-id] field naming, plus a signed form.submitted webhook delivered to destinations configured per form, and a browser embed loader at embed.reform.app/v1/embed.js exposing six parent-page events. Webhooks and custom code require the Pro plan.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.reform.app/
-    baseURL: https://api.reform.app
+    humanURL: https://docs.reform.app/
+    baseURL: https://forms.reform.app
     tags:
       - Forms
       - Submissions
       - Webhooks
+      - Headless Forms
       - Lead Generation
     properties:
       - type: Documentation
         url: https://docs.reform.app/
+      - type: GettingStarted
+        url: https://docs.reform.app/article/49-building-your-first-form
       - type: Pricing
         url: https://www.reform.app/pricing
+      - type: Webhooks
+        url: asyncapi/reform-webhooks.yml
+      - type: Authentication
+        url: authentication/reform-authentication.yml
+      - type: Conventions
+        url: conventions/reform-conventions.yml
+      - type: DataModel
+        url: data-model/reform-data-model.yml
+      - type: Components
+        url: components/reform-components.yml
+      - type: Packages
+        url: packages/reform-packages.yml
       - type: Plans
         url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/plans/reform-plans-pricing.yml
       - type: RateLimits
@@ -57,18 +74,54 @@ common:
     url: https://www.reform.app/
   - type: Documentation
     url: https://docs.reform.app/
+  - type: HelpCenter
+    url: https://docs.reform.app/
+  - type: Support
+    url: https://docs.reform.app/
+  - type: GettingStarted
+    url: https://docs.reform.app/article/49-building-your-first-form
   - type: Blog
     url: https://www.reform.app/blog
   - type: Pricing
     url: https://www.reform.app/pricing
+  - type: SignUp
+    url: https://dashboard.reform.app/register
+  - type: Login
+    url: https://dashboard.reform.app/login
+  - type: TermsOfService
+    url: https://www.reform.app/legal/terms-of-service
   - type: Features
     url: https://www.reform.app/features
   - type: Templates
     url: https://www.reform.app/templates
+  - type: Integrations
+    url: https://www.reform.app/integrations
   - type: LinkedIn
     url: https://www.linkedin.com/company/reformapp
   - type: X
     url: https://x.com/heyreform
+  - type: LLMsTxt
+    url: llms/reform-llms.txt
+  - type: Webhooks
+    url: asyncapi/reform-webhooks.yml
+  - type: Components
+    url: components/reform-components.yml
+  - type: Packages
+    url: packages/reform-packages.yml
+  - type: Conventions
+    url: conventions/reform-conventions.yml
+  - type: Authentication
+    url: authentication/reform-authentication.yml
+  - type: DataModel
+    url: data-model/reform-data-model.yml
+  - type: Conformance
+    url: conformance/reform-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/reform-lifecycle.yml
+  - type: TrustCenter
+    url: security/reform-trust-center.yml
+  - type: Compliance
+    url: security/reform-trust-center.yml
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/reform/refs/heads/main/plans/reform-plans-pricing.yml
   - type: RateLimits
@@ -78,3 +131,31 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1
+x-contract-discovery:
+  checked: '2026-08-14'
+  result: no-published-machine-readable-contract
+  detail: >-
+    STEP 0b contract discovery run against every Reform host. No OpenAPI,
+    Swagger, GraphQL SDL, AsyncAPI, JSON Schema, Postman collection, MCP server
+    or A2A agent card exists. The api.reform.app host recorded as baseURL in an
+    earlier round is NXDOMAIN, and docs.reform.app is a Help Scout help centre
+    whose only two articles matching "API" are about pasting THIRD-PARTY keys
+    (Close CRM, Google reCAPTCHA) into Reform. baseURL corrected to
+    forms.reform.app, the host Reform's own docs name as the form-serving and
+    form-receiving domain.
+  probes:
+    - {url: 'https://api.reform.app/openapi.json', status: 0, note: NXDOMAIN}
+    - {url: 'https://docs.reform.app/openapi.json', status: 404}
+    - {url: 'https://www.reform.app/openapi.json', status: 404}
+    - {url: 'https://dashboard.reform.app/openapi.json', status: 404}
+    - {url: 'https://dashboard.reform.app/graphql', status: 404}
+    - {url: 'https://embed.reform.app/openapi.json', status: 404}
+    - {url: 'https://www.reform.app/.well-known/agent-card.json', status: 404}
+    - {url: 'https://forms.reform.app/.well-known/agent-card.json', status: 403}
+    - {url: 'https://www.reform.app/llms.txt', status: 200, note: real llms.txt, saved verbatim}
+    - {url: 'https://docs.reform.app/article/7-webhooks', status: 200, note: the webhook contract, in prose}
