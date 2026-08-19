@@ -1,0 +1,65 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.reform.app/article/7-webhooks
+docs:
+  - https://docs.reform.app/article/7-webhooks
+  - https://docs.reform.app/article/65-close
+  - https://docs.reform.app/article/38-how-to-set-up-google-recaptcha-integration
+  - https://docs.reform.app/article/15-using-your-own-html-form
+description: >-
+  Reform issues no API credentials. There is no public REST API, no developer
+  portal, no API-key page, no OAuth authorization server and no OpenAPI
+  securitySchemes to derive from — derive-authentication.py produced no profile
+  because the repo holds no spec, and the help centre's only "API key" articles
+  are about pasting THIRD-PARTY keys (Close CRM, Google reCAPTCHA) INTO Reform.
+  The one credential Reform hands a developer is a per-webhook signing secret,
+  used to verify inbound deliveries; it authenticates Reform to the customer,
+  not the customer to Reform.
+api_credentials_issued: false
+oauth2: false
+openid_connect: false
+mutual_tls: false
+schemes:
+  - id: webhook-hmac-signature
+    type: message-signature
+    direction: reform-to-customer
+    algorithm: HMAC-SHA256
+    header: Signature
+    credential: per-webhook secret, retrieved from the dashboard (form → Integrations → Webhook → lock icon)
+    verification: >-
+      Recompute HMAC-SHA256 over the raw request body with the webhook secret
+      and compare the hex digest to the Signature header. Reform publishes a PHP
+      reference implementation.
+    docs: https://docs.reform.app/article/7-webhooks
+    note: >-
+      This is the only cryptographic credential Reform gives a developer. It
+      authenticates Reform's outbound webhook, it does NOT grant access to any
+      Reform endpoint.
+  - id: unauthenticated-form-post
+    type: none
+    direction: customer-to-reform
+    description: >-
+      The headless-forms flow posts a plain HTML form to the Reform-generated
+      form action on forms.reform.app with fields named answers[<block-id>].
+      No key, token or signature is involved; the form's own URL is the
+      capability. Spam control is delegated to Google reCAPTCHA (the customer
+      supplies their own Site Key/Secret) and to Reform's email-validation and
+      free-email-provider blocking features.
+    docs: https://docs.reform.app/article/15-using-your-own-html-form
+  - id: dashboard-session
+    type: interactive-login
+    endpoint: https://dashboard.reform.app/login
+    description: >-
+      Human login to the Reform application. Reform's security page states MFA
+      is required for Reform employees and that strong passwords are required
+      for platform users; no customer-facing SSO/SAML or MFA feature is
+      documented in the help centre, and no OIDC discovery document is served
+      (see well-known/reform-well-known.yml).
+third_party_credentials_stored:
+  - {integration: Close CRM, credential: Close API key, note: generated in Close, pasted into Reform}
+  - {integration: Google reCAPTCHA, credential: Site Key + Site Secret, note: generated in the reCAPTCHA admin panel, pasted into Reform}
+  - {integration: HubSpot / ConvertKit (Kit) / Notion / Google Sheets / Slack, credential: OAuth or account connection performed inside the Reform dashboard, note: mechanics not documented publicly}
+gaps:
+  - No published API key, token, or OAuth flow for programmatic access to Reform data.
+  - No /.well-known/openid-configuration or /.well-known/oauth-authorization-server on any Reform host (all 404 or 403).
+  - No documented rotation policy, expiry, or scope model for the webhook signing secret.

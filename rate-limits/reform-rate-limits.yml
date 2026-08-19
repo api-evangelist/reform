@@ -1,60 +1,80 @@
 name: Reform Rate Limits
-description: Rate limiting information for the Reform Forms API. Reform recommends implementing request batching, caching, and asynchronous processing to handle rate limits. Specific numeric limits are not publicly documented; consult Reform support or documentation for current thresholds.
-version: '0.1'
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://docs.reform.app/ (full help-centre search for "rate limit", "limit",
+  "API", "quota" — no result), https://www.reform.app/pricing,
+  https://docs.reform.app/article/7-webhooks
+version: '0.2'
 url: https://docs.reform.app/
-limits:
-  - name: API Requests
-    description: General REST API rate limit applied per API key. Reform recommends monitoring rate limits and implementing retry logic with exponential backoff.
-    scope: api_key
-    strategy: token_bucket
-    enforcement: HTTP 429 Too Many Requests
-    recommended_practices:
-      - Use request batching to reduce call frequency
-      - Implement caching for repeated read operations
-      - Use asynchronous processing for high-traffic scenarios
-      - Monitor rate limit headers in API responses
-      - Implement exponential backoff on 429 responses
+description: >-
+  Reform publishes NO rate limits. There is no public REST API to limit, no
+  documented throttle on form submission or webhook delivery, no published
+  response headers, and no documented status code on exhaustion. This file
+  records that absence. It replaces a prior round's version that asserted a
+  token-bucket strategy, HTTP 429 enforcement and API-key/OAuth/Basic
+  authentication — none of which appears anywhere in Reform's documentation and
+  none of which could be reproduced by probe. Only the plan-level quotas Reform
+  does publish, and the third-party limits its integrations inherit, are kept.
+limit_count: 0
+headers_published: false
+exhaustion_status_code: null
+retry_after: not published
 
-  - name: Webhook Delivery
-    description: Webhook events are delivered per form submission. Reform recommends idempotent webhook handlers to handle potential duplicate deliveries.
-    scope: per_form
-    strategy: event_driven
-    recommended_practices:
-      - Implement idempotent handlers
-      - Acknowledge webhooks quickly (within 5 seconds)
-      - Process webhook payloads asynchronously
+limits: []
 
-  - name: Form Submissions
-    description: Form submission throughput is subject to per-account rate controls. Unlimited response storage is provided across all paid plans.
+published_quotas:
+  - name: Form responses
     scope: account
-    storage: unlimited
-    plans_with_submissions:
-      - Basic
-      - Pro
+    value: unlimited
+    source: https://www.reform.app/pricing
+    note: >-
+      "All plans include unlimited responses" — stated on the pricing page and
+      repeated on the Basic and Pro tiers. A quota, not a rate limit.
+  - name: Form publishing
+    scope: account
+    value: 0 on the Free plan
+    source: https://www.reform.app/pricing
+    note: >-
+      Free-plan forms can be built but cannot be published or shared publicly,
+      so the effective submission rate on Free is zero.
+  - name: Team members
+    scope: account
+    value: 1 on Free and Basic; unlimited on Pro
+    source: https://www.reform.app/pricing
+  - name: Webhook destinations
+    scope: per form
+    value: not published
+    source: https://docs.reform.app/article/7-webhooks
+    note: >-
+      Multiple destinations are supported ("the URLs in the Active webhooks
+      list"); no maximum is stated. Webhooks are a Pro-plan feature.
 
-  - name: Integration API Limits
-    description: Third-party integration rate limits (HubSpot, Salesforce, Google Sheets) are governed by the respective platforms. Reform recommends queuing and batching strategies to avoid exceeding downstream limits.
-    scope: integration
-    external_dependencies:
-      - name: HubSpot API
-        limit_type: per_second
-        notes: Reform blog notes strategies for scaling without exceeding HubSpot API limits
-      - name: Salesforce API
-        limit_type: per_day
-        notes: OAuth and exact field mapping recommended for Salesforce integration
-      - name: Zapier
-        limit_type: task_based
-        notes: Zapier task limits apply based on Zapier plan
-authentication:
-  methods:
-    - type: API Key
-      location: header
-      description: API keys passed in request headers for authentication
-    - type: OAuth
-      description: OAuth tokens supported for complex integration scenarios
-    - type: Basic Auth
-      description: Username and password authentication supported where applicable
-  security_recommendations:
-    - Store credentials in encrypted environment variables
-    - Never expose API keys in client-side code
-    - Rotate API keys regularly
+webhook_delivery:
+  retries_published: false
+  timeout_published: false
+  backoff_published: false
+  note: >-
+    Reform's marketing page claims "robust error handling" and "reliable data
+    delivery ... even at high volumes"; the documentation states no retry
+    schedule, no delivery timeout and no dead-letter behaviour. Consumers should
+    dedupe on the event `id`.
+  source: https://docs.reform.app/article/7-webhooks
+
+inherited_third_party_limits:
+  note: >-
+    Reform's outbound integrations are rate-limited by the DOWNSTREAM platform,
+    not by Reform. These are the third party's limits, recorded so an integrator
+    knows where the ceiling actually is.
+  platforms:
+    - {name: HubSpot, limit_type: per-second and daily, authority: HubSpot}
+    - {name: Salesforce, limit_type: per-day API request allocation, authority: Salesforce, status: integration listed "coming soon"}
+    - {name: Zapier, limit_type: task-based, authority: Zapier plan}
+    - {name: Google Sheets, limit_type: per-minute read/write quotas, authority: Google}
+    - {name: Close, limit_type: per-second, authority: Close}
+    - {name: Slack, limit_type: per-method tier, authority: Slack}
+
+gaps:
+  - No rate limit of any kind is documented for Reform's own surfaces.
+  - No X-RateLimit-*, RateLimit-* or Retry-After headers are documented, and none could be observed — there is no unauthenticated Reform endpoint to observe them on.
+  - No abuse/anti-spam throughput policy is published; spam control is delegated to customer-supplied Google reCAPTCHA keys and Reform's email-validation features.

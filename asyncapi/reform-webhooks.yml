@@ -1,0 +1,123 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.reform.app/article/7-webhooks
+docs:
+  - https://docs.reform.app/article/7-webhooks
+  - https://www.reform.app/integrations/webhooks
+api: Reform Forms
+summary: >-
+  Webhooks are the only server-to-server surface Reform publishes. Reform does
+  not ship a public REST API, an OpenAPI definition, or an AsyncAPI document —
+  webhooks are configured per form inside the dashboard (Integrations → Webhook)
+  and Reform POSTs a signed JSON event to each active destination URL. This file
+  is the webhook catalogue derived verbatim from Reform's own documentation; it
+  is NOT an AsyncAPI document and no AsyncAPI pointer is emitted, because Reform
+  publishes none.
+asyncapi_published: false
+availability:
+  plan: Pro
+  note: >-
+    Reform's pricing page lists "Webhooks for custom integrations" as a Pro-plan
+    feature. Free and Basic plans cannot configure webhook destinations.
+configuration:
+  where: Reform dashboard → form → Integrations → Webhook integration
+  model: >-
+    Toggle the webhook integration on and paste the destination URL. Multiple
+    destinations are supported; Reform sends to every URL in the "Active
+    webhooks" list.
+  secret_retrieval: >-
+    Each webhook has its own secret. Open the dashboard → form → Integrations →
+    Webhook integration settings → locate the webhook → click the lock icon.
+delivery:
+  transport: https-post
+  content_type: application/json
+  signature:
+    algorithm: HMAC-SHA256
+    header: Signature
+    format: hex digest of the raw request body, keyed with the per-webhook secret
+    secret_scope: per webhook destination
+    verification: >-
+      Read the Signature header, read the request body, compute an HMAC-SHA256
+      of the body using the webhook secret, and compare it to the header value.
+      Reform documents a PHP reference implementation using hash_hmac('sha256',
+      $body, $secret).
+    docs: https://docs.reform.app/article/7-webhooks
+  retries:
+    documented: false
+    note: >-
+      Reform does not publish a retry schedule, a delivery-failure policy, or a
+      timeout. The marketing page claims "robust error handling"; no mechanics
+      are documented.
+  ordering:
+    documented: false
+  deduplication:
+    field: id
+    note: >-
+      Every event carries a UUID `id`. Reform does not document at-least-once vs
+      exactly-once delivery, so consumers should treat `id` as the dedup key.
+      Reform's own guidance elsewhere recommends idempotent handlers.
+envelope:
+  fields:
+    - {name: type, type: string, description: The event type, e.g. form.submitted.}
+    - {name: id, type: string (uuid), description: Unique identifier for this event delivery.}
+    - {name: occurred_at, type: string (ISO 8601 with offset), description: When the event happened, e.g. '2021-05-25T04:56:26+00:00'.}
+    - {name: payload, type: object, description: Event-specific body; for form.submitted it carries `form` and `submission`.}
+events:
+  - name: form.submitted
+    description: >-
+      Fires every time someone submits a form. The payload carries the form the
+      submission belongs to and the submission itself, including every answer.
+    payload:
+      form:
+        - {name: id, type: string (uuid), description: The form's unique identifier.}
+        - {name: created_at, type: string (ISO 8601), description: When the form was created.}
+        - {name: name, type: string, description: The form's name in the builder.}
+        - {name: status, type: string, description: 'Form status, e.g. published. (Present in the PHP signature example.)'}
+        - {name: link, type: string (url), description: 'Public hosted-form URL, e.g. https://forms.reform.app/W8eMHb/zUC012.'}
+      submission:
+        - {name: id, type: string (uuid), description: The submission's unique identifier.}
+        - {name: created_at, type: string (ISO 8601), description: When the submission was recorded.}
+        - name: answers
+          type: object
+          description: >-
+            A map keyed by BLOCK id (the question's unique id in the builder),
+            not by position. Reform documents this explicitly so consumers do not
+            depend on question order. Each value is an object of
+            {id, question, answer} where `id` is the answer's own uuid.
+    example_shape: |
+      {
+        "type": "form.submitted",
+        "id": "<event-uuid>",
+        "occurred_at": "2021-05-25T04:56:26+00:00",
+        "payload": {
+          "form": {
+            "id": "<form-uuid>",
+            "created_at": "2021-05-25T04:53:12+00:00",
+            "name": "Breakfast survey",
+            "link": "https://forms.reform.app/W8eMHb/zUC012"
+          },
+          "submission": {
+            "id": "<submission-uuid>",
+            "created_at": "2021-05-25T04:56:26+00:00",
+            "answers": {
+              "<block-uuid>": {
+                "id": "<answer-uuid>",
+                "question": "What's your name?",
+                "answer": "..."
+              }
+            }
+          }
+        }
+      }
+event_count: 1
+gaps:
+  - >-
+    Only one event type (form.submitted) is documented. The marketing page for
+    the webhooks integration advertises "Custom Event Triggers ... such as
+    submissions, updates, or even conditional triggers"; the documentation names
+    no event other than form.submitted.
+  - >-
+    No JSON Schema, OpenAPI `webhooks:` block, or AsyncAPI document is published
+    for the payload — the only machine-readable artefact is the example body in
+    the help-centre article.
+  - No published retry, backoff, timeout, or replay/redelivery policy.

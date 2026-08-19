@@ -1,3 +1,6 @@
+generated: '2026-08-14'
+method: derived
+source: plans/reform-plans-pricing.yml (https://www.reform.app/pricing)
 name: Reform FinOps Framework
 description: FOCUS-aligned FinOps cost management guidance for teams using the Reform Forms API and platform. Covers cost allocation, optimization strategies, and budget management across Reform's pricing tiers.
 version: '1.0'

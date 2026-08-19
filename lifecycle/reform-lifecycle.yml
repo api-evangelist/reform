@@ -1,0 +1,108 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://www.reform.app/sitemap.xml (780 URLs, no changelog/roadmap/status
+  entry), https://www.reform.app/blog/big-news-about-the-future-of-reform,
+  https://docs.reform.app/, plus live probes recorded below.
+description: >-
+  Reform publishes no API versioning policy, no deprecation policy, no changelog,
+  no roadmap, no status page and no SLA. The only versioned artefact is the
+  embed loader path. This file records those absences with the probe that
+  established each one — no Lifecycle-derived StatusPage or Deprecation pointer
+  is emitted in apis.yml, because neither exists.
+
+versioning:
+  api:
+    scheme: none
+    note: There is no API to version.
+  embed_loader:
+    scheme: major-pinned URL path
+    current: /v1/
+    url: https://embed.reform.app/v1/embed.js
+    http_status: 200
+    note: >-
+      Only the major is pinned in the path. The minified bundle exposes no
+      version string and there is no registry entry, so consumers float to
+      whatever Reform last deployed at /v1/ and cannot pin or diff a build.
+  webhook_payload:
+    scheme: none
+    note: >-
+      The form.submitted envelope carries no schema version field. The PHP
+      signature example includes a `status` key on `form` that the canonical
+      payload example omits, so the shape has drifted at least once without any
+      version marker.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  rfc8594: false
+  note: >-
+    No deprecation or breaking-change policy is published anywhere on
+    reform.app or docs.reform.app.
+
+changelog:
+  url: null
+  published: false
+  probes:
+    - {url: 'https://www.reform.app/changelog', status: 404}
+  note: >-
+    Product news is announced ad hoc on the blog (https://www.reform.app/blog),
+    which is dated but is not a changelog — it carries no version numbers and no
+    breaking-change notices.
+
+roadmap:
+  url: null
+  published: false
+  probes:
+    - {url: 'https://www.reform.app/roadmap', status: 404}
+  note: >-
+    The help centre offers "Request a new feature"
+    (https://docs.reform.app/article/59-request-a-new-feature); the resulting
+    backlog is not public. The pricing page lists "Salesforce (coming soon)" as
+    the only publicly dated-forward commitment, and it has carried that label
+    across multiple rounds of this profile.
+
+status_page:
+  url: null
+  published: false
+  probes:
+    - {url: 'https://status.reform.app', status: 0, note: DNS does not resolve (NXDOMAIN)}
+  note: No status, uptime or incident history page of any kind.
+
+sla:
+  url: null
+  public_uptime_target: null
+  note: >-
+    The Terms of Service (https://www.reform.app/legal/terms-of-service, HTTP
+    200) is the only availability-relevant document; no numeric uptime
+    commitment is published.
+
+support:
+  help_centre: https://docs.reform.app/
+  channel: Email support (listed from the Basic plan upward on the pricing page)
+
+ownership:
+  event: acquisition
+  acquirer: FunnelEnvy
+  source: https://www.reform.app/blog/big-news-about-the-future-of-reform
+  note: >-
+    Reform was founded by Peter Suhm and Bjørn and acquired by FunnelEnvy, a
+    conversion-rate-optimisation agency, which now operates it. The product is
+    live and actively marketed; the "Done for you" tier is delivered by
+    FunnelEnvy consultants. Recorded here because it explains why Reform's
+    engineering surface (no API, no SDK, no changelog) has not grown while its
+    content surface has.
+
+decay_signals:
+  - >-
+    api.reform.app — the host this profile previously recorded as the API base —
+    is NXDOMAIN as of 2026-08-14. Nothing at reform.app now points at an API
+    host.
+  - >-
+    Salesforce integration has been listed as "coming soon" on the pricing page
+    across successive rounds of this profile.
+  - >-
+    The webhook article's last-updated date is 2 September 2024 and the headless
+    forms article's is 17 November 2025; both are the newest developer-facing
+    documents Reform has published.

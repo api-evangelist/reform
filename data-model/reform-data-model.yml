@@ -1,0 +1,125 @@
+generated: '2026-08-14'
+method: derived
+source: >-
+  Derived from the form.submitted webhook payload published at
+  https://docs.reform.app/article/7-webhooks (captured in
+  asyncapi/reform-webhooks.yml) and the block/field semantics documented in the
+  headless-forms, prefill and event-handler articles. There is no OpenAPI to
+  derive $ref relationships from — Reform publishes none — so this graph is
+  built from the one payload Reform documents plus the identifiers its docs
+  describe.
+docs: https://docs.reform.app/article/7-webhooks
+notation: >-
+  relationships use has_one / has_many / belongs_to with the referencing field
+  name; direction is from the entity that owns the reference.
+confidence: >-
+  high for Form, Submission, Answer and Block (all appear verbatim in the
+  published payload or the field-naming convention); medium for Workspace/Team
+  and Integration, which are named in the docs and the URL structure but never
+  appear in a machine-readable payload.
+
+entities:
+  - name: Workspace
+    id_format: opaque short slug (URL segment)
+    domain: account
+    description: >-
+      The team/account container. Appears as the first segment of a hosted form
+      URL (forms.reform.app/<workspace>/...). Team access and collaboration are
+      Pro-plan features; Brand CSS is set at this level.
+    confidence: medium
+  - name: Form
+    id_format: uuid
+    domain: core
+    description: A form definition built in the builder; published, draft or closed.
+    fields: [id, created_at, name, status, link]
+    status_values: [draft, published, closed]
+    confidence: high
+  - name: Block
+    id_format: uuid
+    domain: core
+    description: >-
+      A single field/question inside a form. Its UUID is the join key used
+      everywhere: answers[<block-id>] in headless posts, the answers map key in
+      webhooks, and the addressable id in event-handler code and prefill URLs.
+      Types include text, number, select-multiple, hidden, file upload (Pro) and
+      embeds (Pro).
+    confidence: high
+  - name: Page
+    id_format: opaque short slug (URL segment)
+    domain: core
+    description: >-
+      A step in a multi-page form. Navigation between pages is driven by logic
+      rules and by the onPageChanged / onPageSubmitted events.
+    confidence: medium
+  - name: Submission
+    id_format: uuid
+    domain: core
+    description: >-
+      One respondent's completed (or partial, on Pro) response to a form.
+      Carries created_at and the answers map.
+    fields: [id, created_at, answers]
+    confidence: high
+  - name: Answer
+    id_format: uuid
+    domain: core
+    description: >-
+      A single respondent value for a single block. Carries its own id plus the
+      question text as rendered and the answer value. Keyed in the submission by
+      block id, not by position.
+    fields: [id, question, answer]
+    confidence: high
+  - name: Outcome
+    id_format: not published
+    domain: core
+    description: >-
+      The terminal state configured for a form — a thank-you page or a redirect
+      URL. Selected by logic rules on multi-page forms.
+    confidence: medium
+  - name: Integration
+    id_format: not published
+    domain: integrations
+    description: >-
+      A per-form connection to an external system (Webhook, Zapier, Google
+      Sheets, Notion, Slack, Close, HubSpot, ConvertKit/Kit, reCAPTCHA, Google
+      Tag Manager). Configured in the form's Integrations panel.
+    confidence: medium
+  - name: Webhook
+    id_format: not published
+    domain: integrations
+    description: >-
+      A destination URL registered against a form, with its own signing secret.
+      Reform POSTs a signed event to every active webhook on the form.
+    confidence: medium
+  - name: Event
+    id_format: uuid
+    domain: integrations
+    description: >-
+      A webhook delivery envelope — {type, id, occurred_at, payload}. The only
+      documented type is form.submitted.
+    confidence: high
+
+relationships:
+  - {from: Workspace, to: Form, type: has_many, via: workspace URL segment}
+  - {from: Form, to: Block, type: has_many, via: block id}
+  - {from: Form, to: Page, type: has_many, via: page URL segment}
+  - {from: Form, to: Submission, type: has_many, via: submission belongs to form}
+  - {from: Form, to: Integration, type: has_many, via: form Integrations panel}
+  - {from: Form, to: Outcome, type: has_many, via: logic rules}
+  - {from: Submission, to: Form, type: belongs_to, via: payload.form.id}
+  - {from: Submission, to: Answer, type: has_many, via: 'payload.submission.answers[<block-id>]'}
+  - {from: Answer, to: Block, type: belongs_to, via: the answers map key (block uuid)}
+  - {from: Integration, to: Webhook, type: has_one, via: webhook integration settings}
+  - {from: Webhook, to: Event, type: has_many, via: delivery}
+  - {from: Event, to: Submission, type: has_one, via: payload.submission}
+  - {from: Event, to: Form, type: has_one, via: payload.form}
+
+notes:
+  - >-
+    The graph is read-only from the outside: Reform exposes no endpoint to
+    create, read, update or delete any of these entities. Forms and blocks are
+    authored in the dashboard; submissions arrive by HTTP POST from a browser;
+    the only egress is the webhook.
+  - >-
+    Block id is the stable contract. Question TEXT is delivered alongside each
+    answer but is display data — Reform's docs are explicit that consumers
+    should key on the block UUID and never on question order.

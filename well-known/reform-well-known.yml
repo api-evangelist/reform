@@ -1,0 +1,74 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live HTTP probes of the /.well-known/ discovery surface on every Reform host
+  reachable from apis.yml and the published documentation: the marketing site
+  (www.reform.app), the Help Scout help centre (docs.reform.app), the hosted
+  form host (forms.reform.app), the application (dashboard.reform.app) and the
+  embed CDN (embed.reform.app). The apis.yml baseURL host api.reform.app does
+  not resolve (NXDOMAIN) and therefore could not be probed.
+description: >-
+  Reform serves NO /.well-known/ documents. Every path on every host returned
+  404 (Webflow/Netlify-hosted properties) or 403 (Cloudflare-fronted properties);
+  none returned a document of any kind. This file records that absence — it is a
+  measurement, not a surface, and no WellKnown or SecurityTxt pointer is emitted
+  in apis.yml as a result.
+result: no-documents-found
+hosts:
+  - host: https://www.reform.app
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://docs.reform.app
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://forms.reform.app
+    note: Cloudflare-fronted; answers 403 text/html to every /.well-known/ path.
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/oauth-protected-resource, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /.well-known/agent.json, status: 403}
+  - host: https://dashboard.reform.app
+    note: Cloudflare-fronted; answers 403 text/html to every /.well-known/ path.
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/oauth-protected-resource, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /.well-known/agent.json, status: 403}
+  - host: https://embed.reform.app
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://api.reform.app
+    unreachable: true
+    note: >-
+      NXDOMAIN — the host named as baseURL in apis.yml has no DNS record. Nothing
+      could be probed. Recorded here because the absence is itself the finding.

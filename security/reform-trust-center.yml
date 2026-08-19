@@ -1,0 +1,56 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.reform.app/legal/security-and-compliance
+url: https://www.reform.app/legal/security-and-compliance
+http_status: 200
+description: >-
+  Reform publishes a single Security and Compliance page on its marketing site.
+  It is a narrative posture statement, not a trust portal: there is no evidence
+  room, no downloadable report, no subprocessor list, no pen-test summary and no
+  named auditor. probe-security-programs.py returned trust=none because Reform
+  serves no /trust, /security or /.well-known/security.txt endpoint; this file
+  is the searched upgrade over that negative probe.
+trust_portal: false
+certifications:
+  - SOC 2
+  - ISO 27001
+frameworks:
+  - GDPR
+  - EU-U.S. Data Privacy Framework (DPF)
+evidence:
+  - source: https://www.reform.app/legal/security-and-compliance
+    quote: >-
+      "We're compliant with and regularly audited against multiple regulations
+      and standards, including SOC2, ISO 27001, the E.U. General Data Protection
+      Regulation (GDPR), and the Data Privacy Framework (DPF)."
+    keywords: [soc2, iso 27001, gdpr, dpf]
+  - source: https://www.reform.app/legal/dpf-statement
+    http_status: 200
+    note: Separate Data Privacy Framework statement page.
+controls_published:
+  security_program: >-
+    Dedicated budget and staff; documented policies, regular risk assessments,
+    recurring security awareness training.
+  infrastructure: >-
+    Hosted on DigitalOcean; inherits its compliance program, network and web
+    application firewalls, availability and resilience capabilities.
+  encryption: In transit and at rest.
+  logging_monitoring: >-
+    Full transaction logging (who/what/where/when), aggregated and monitored in
+    real time, automated alerting on suspicious activity, recurring manual
+    review, correlation against threat intelligence.
+  access_control: >-
+    Strong password requirement for platform users; per-subscriber data-access
+    restriction from the admin console; strict management of privileged and
+    development accounts; MFA required for Reform employees.
+  sdlc: >-
+    Code review on all changes; separate dev/test/staging/production; vetted
+    third-party libraries; automated CI/CD.
+  vulnerability_management: Scanning plus severity-based remediation and patching.
+  resilience: Automatic self-healing, failover, rollback, backup and scaling; recovery procedures tested.
+gaps:
+  - No certificate, audit report, or evidence portal is offered — the claims are unverifiable from outside.
+  - No auditor, report type (SOC 2 Type I vs Type II), or period is named.
+  - No subprocessor list and no published DPA link on the page.
+  - No vulnerability disclosure policy, security contact, bug bounty, or security.txt (see security/reform-vulnerability-disclosure absence).
+  - No HIPAA, PCI DSS or FedRAMP claim — Reform's blog writes about these regimes but the company does not claim them.

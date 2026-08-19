@@ -1,0 +1,144 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://docs.reform.app/article/15-using-your-own-html-form,
+  https://docs.reform.app/article/7-webhooks,
+  https://docs.reform.app/article/13-form-events,
+  https://docs.reform.app/article/31-event-handlers,
+  https://docs.reform.app/article/9-prepopulating
+description: >-
+  Cross-cutting semantics of Reform's integration surface. Reform has no REST
+  API, so these are the conventions of the surfaces it does publish: the
+  headless HTML form POST, the outbound webhook, the embed loader and its event
+  API. Written from Reform's own documentation; nothing here is inferred from a
+  specification, because Reform publishes none.
+api_style: >-
+  No REST API. Integration is (a) an HTML form POST to a Reform-generated form
+  action, (b) an outbound signed JSON webhook, (c) a browser embed loader with a
+  JavaScript event API.
+base_url: https://forms.reform.app
+base_url_evidence: >-
+  Reform's own docs name forms.reform.app as the host that serves and receives
+  forms — the reCAPTCHA article instructs customers to "add the forms.reform.app
+  domain to your reCAPTCHA settings", and hosted-form URLs published in the
+  prefill and webhook docs are on forms.reform.app. The host named as baseURL in
+  earlier rounds, api.reform.app, is NXDOMAIN.
+
+identifiers:
+  style: UUID v4
+  entities_identified: [form, submission, block (question), answer]
+  block_id: >-
+    Every form block carries a UUID, copied from the builder via the block's
+    gear icon → Copy ID. It is the join key across every Reform surface: it
+    names headless form inputs, keys the webhook answers map, and addresses
+    fields in prefill URLs and event-handler code.
+  workspace_and_form_slugs: >-
+    Hosted form URLs use short opaque slugs, e.g.
+    https://forms.reform.app/y6xYcg/work-with-us-1/dVoR1v — workspace, form,
+    page.
+
+request_encoding:
+  headless_form:
+    method: POST
+    content_type: application/x-www-form-urlencoded (standard HTML form submission)
+    field_naming: answers[<block-id>]
+    type_matching: The HTML input type must match the Reform block type.
+    multi_select: One <input type="checkbox"> per option; do not mark the block required.
+    unsupported: File-upload blocks are not supported in headless mode.
+  prefill:
+    mechanism: URL query parameters on the hosted/embedded form
+    by_name: '?<hidden-field-name>=<value>  (preferred)'
+    by_id: '?<block-uuid>=<url-encoded value>'
+    embed_passthrough: >-
+      The embed loader forwards query parameters from the parent page into the
+      embedded form, so prefill and attribution parameters propagate through the
+      iframe automatically.
+
+response_encoding:
+  webhook:
+    content_type: application/json
+    envelope: {type, id, occurred_at, payload}
+    timestamps: ISO 8601 with UTC offset, e.g. '2021-05-25T04:56:26+00:00'
+    collections: >-
+      `answers` is an OBJECT keyed by block UUID, not an array. Reform documents
+      this explicitly so consumers never depend on question order.
+    detail: asyncapi/reform-webhooks.yml
+
+idempotency:
+  supported: false
+  request_side: >-
+    Reform publishes no idempotency key, no request-deduplication header and no
+    replay semantics for form submission.
+  consumer_side: >-
+    On the receiving end, the webhook event carries a UUID `id` that a consumer
+    can use as a dedup key, and Reform's marketing guidance recommends
+    idempotent webhook handlers. Reform does not state its own delivery
+    guarantee (at-least-once vs exactly-once), so this is advice, not a
+    contract. No Idempotency pointer is emitted in apis.yml.
+
+pagination:
+  supported: false
+  note: No listing endpoint exists to paginate.
+
+filtering_expansion:
+  supported: false
+
+metadata:
+  hidden_fields: >-
+    Hidden blocks act as the metadata channel — named key/value pairs set from
+    the URL (e.g. user_id, utm_source) that ride along with the submission and
+    appear in the webhook answers map like any other block.
+
+tracing:
+  request_id: none published
+  note: >-
+    No X-Request-Id / correlation header is documented on any surface. The only
+    correlatable identifier is the webhook event `id`.
+
+versioning:
+  api: not applicable (no API)
+  embed_loader:
+    scheme: major-pinned path
+    current: /v1/
+    url: https://embed.reform.app/v1/embed.js
+    note: >-
+      Only the major is pinned. The bundle exposes no version string, so a
+      consumer cannot determine which build is loaded and cannot pin one.
+  detail: lifecycle/reform-lifecycle.yml
+
+errors:
+  http_problem_types: none published
+  envelopes:
+    - surface: headless form POST
+      behaviour: >-
+        Invalid data with no browser-side validation causes a REDIRECT to the
+        hosted form so the respondent sees the error messages inline. There is
+        no machine-readable error body.
+    - surface: in-form event handlers (onInput / onPageSubmitted)
+      shape_single: "{ type: 'error', error: '<message>' }"
+      shape_multi: "{ type: 'error', errors: { '<block-id>': '<message>' } }"
+      success_single: "{ type: 'success', answer: <reformatted value> }"
+      success_multi: "{ type: 'success', values: { '<block-id>': <value> } }"
+      note: >-
+        A client-side validation contract, not an HTTP error contract. RFC 9457
+        problem+json is not used anywhere.
+      docs: https://docs.reform.app/article/31-event-handlers
+    - surface: onValidationFailed
+      description: Fires when a submitted page returns validation errors from the backend.
+  detail: no errors/ catalogue is emitted — there is no HTTP error surface to catalogue.
+
+rate_limits:
+  published: false
+  detail: rate-limits/reform-rate-limits.yml
+
+authentication:
+  summary: No API credentials are issued; webhooks are signed HMAC-SHA256 in the Signature header.
+  detail: authentication/reform-authentication.yml
+
+async_semantics:
+  event_handler_loading: >-
+    Parent-page event handlers load asynchronously; the embed snippet buffers
+    events fired before load and replays them once the handlers are ready.
+  redirect_blocking: >-
+    An async onFormComplete handler blocks a custom redirect until it resolves —
+    Reform explicitly warns to keep it short.

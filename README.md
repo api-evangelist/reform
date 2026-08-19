@@ -58,9 +58,30 @@ Reform is a developer-first, conversion-optimized form builder with a REST API f
 This repository contains an APIs.json profile for Reform, cataloging its public API surface and associated resources.
 
 - [apis.yml](apis.yml) — Main APIs.json index
+- [llms/reform-llms.txt](llms/reform-llms.txt) — Reform's own llms.txt, saved verbatim from https://www.reform.app/llms.txt
+- [asyncapi/reform-webhooks.yml](asyncapi/reform-webhooks.yml) — The `form.submitted` webhook contract (HMAC-SHA256 `Signature` header)
+- [components/reform-components.yml](components/reform-components.yml) — Embed loader, hosted forms, headless forms, and the two event APIs
+- [packages/reform-packages.yml](packages/reform-packages.yml) — Distribution surface (no SDK exists; one CDN embed loader)
+- [conventions/reform-conventions.yml](conventions/reform-conventions.yml) — Cross-cutting integration semantics
+- [authentication/reform-authentication.yml](authentication/reform-authentication.yml) — Credential model (no API credentials are issued)
+- [data-model/reform-data-model.yml](data-model/reform-data-model.yml) — Form → Block → Submission → Answer entity graph
+- [conformance/reform-conformance.yml](conformance/reform-conformance.yml) — Standards conformance, asserted and denied, with evidence
+- [lifecycle/reform-lifecycle.yml](lifecycle/reform-lifecycle.yml) — Versioning, deprecation, changelog, status page (all absent) and decay signals
+- [security/reform-trust-center.yml](security/reform-trust-center.yml) — SOC 2 / ISO 27001 / GDPR / DPF posture
+- [security/reform-domain-security.yml](security/reform-domain-security.yml) — TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe
+- [well-known/reform-well-known.yml](well-known/reform-well-known.yml) — `/.well-known/` probe across all five live hosts (no documents found)
 - [plans/reform-plans-pricing.yml](plans/reform-plans-pricing.yml) — API Commons Plans 0.1
 - [rate-limits/reform-rate-limits.yml](rate-limits/reform-rate-limits.yml) — API Commons Rate Limits 0.1
 - [finops/reform-finops.yml](finops/reform-finops.yml) — FinOps Framework 1.0 FOCUS-aligned cost guidance
+
+### Note on Reform's API surface
+
+Reform publishes **no REST API, SDK, OpenAPI definition or developer portal**. The host
+`api.reform.app` — recorded as the API base in an earlier round of this profile — does not
+resolve (NXDOMAIN as of 2026-08-14). Reform's real, documented integration surface is three
+things: a signed outbound `form.submitted` webhook, a CDN-hosted browser embed loader with a
+parent-page event API, and a "headless" mode that posts your own HTML form to
+`forms.reform.app`. Those are what this profile now describes.
 
 ## Maintainer
 

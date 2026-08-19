@@ -1,0 +1,276 @@
+# Reform
+
+> Reform is a conversion-focused, no-code form builder for B2B and SaaS teams. It helps you build multi-step, high-converting forms, qualify and enrich leads, reduce abandonment, and sync data with CRMs and marketing tools through deep integrations and real-time analytics.
+
+Reform’s content breaks down into:
+- Core product pages explaining features, pricing, templates, and integrations
+- Lead Conversion Playbook, a library of tested CRO “plays” for forms and funnels
+- Blog, with deep-dive guides on form UX, analytics, privacy/compliance, lead scoring, and integrations
+- Legal and security docs, covering data protection, compliance posture, and key policies
+
+Use the sections below as “starting points” when loading context. For broader questions, follow the linked indexes (e.g. `/blog`, `/playbook`, `/play/*`) and selectively pull in additional pages as needed.
+
+## Core product & overview
+
+- https://www.reform.app/  
+  High-level overview of Reform, core value props, and primary use cases for B2B/SaaS lead generation forms.
+- https://www.reform.app/features  
+  Detailed product capabilities, including multi-step forms, conditional logic, analytics, enrichment, spam prevention, and CRM/marketing integrations.
+- https://www.reform.app/templates  
+  Index of pre-built form templates (lead gen, onboarding, feedback, surveys, etc.).
+- https://www.reform.app/integrations  
+  Overview of native integrations and how Reform connects to the broader tech stack.
+- https://www.reform.app/pricing  
+  Plans, pricing structure, and what’s included at each tier.
+- https://www.reform.app/done-for-you-forms  
+  White-glove “we build it for you” service for teams that want Reform experts to handle implementation.
+- https://www.reform.app/playbook  
+  Explains the Playbook and how Reform’s tested plays drive better lead quality and conversion rates.
+- https://www.reform.app/blog  
+  Main entry point to all Reform articles (growth insights, compliance, analytics, CRO).
+- https://www.reform.app/testimonials  
+  Social proof and customer stories using Reform to improve lead conversion.
+- https://www.reform.app/about  
+  Background on the company, team, and mission.
+
+## Legal, security & compliance
+
+- https://www.reform.app/legal/security-and-compliance  
+  Security posture, data protection practices, and compliance controls (e.g. encryption, access, storage).
+- https://www.reform.app/legal/dpf-statement  
+  Details on Reform’s participation in relevant data transfer and privacy frameworks.
+- https://www.reform.app/legal/terms-of-service  
+  Core legal contract governing Reform’s use.
+
+## Templates
+
+Use these to understand concrete form patterns and common use cases.
+
+- https://www.reform.app/templates/customer-feedback-survey  
+  Template for collecting qualitative feedback post-purchase/onboarding.
+- https://www.reform.app/templates/customer-intake-form  
+  Intake workflows for services/agency and B2B teams.
+- https://www.reform.app/templates/demo-request-form  
+  SaaS/B2B demo booking and qualification.
+- https://www.reform.app/templates/early-access-list  
+  Waitlist/early access capture for product launches.
+- https://www.reform.app/templates/feature-request-form  
+  Collect and structure product feature requests.
+- https://www.reform.app/templates/lead-gen-multi-step  
+  Baseline multi-step lead capture with qualification logic.
+- https://www.reform.app/templates/lead-gen-multi-step-with-multiple-outcomes  
+  Branching outcome flow based on answers.
+- https://www.reform.app/templates/leave-request-form  
+  HR-style internal leave request workflow.
+- https://www.reform.app/templates/podcast-listener-survey  
+  Audience research for podcast listeners.
+- https://www.reform.app/templates/product-market-fit-survey  
+  PMF signal collection for SaaS/products.
+- https://www.reform.app/templates/saas-onboarding-survey  
+  New customer onboarding and segmentation.
+- https://www.reform.app/templates/suggestion-box  
+  Simple anonymous or named suggestion funnel.
+- https://www.reform.app/templates/van-westendorp-price-sensitivity  
+  Pricing research template using Van Westendorp methodology.
+
+## Integrations
+
+These pages are useful when answering questions about connecting Reform to other tools.
+
+- https://www.reform.app/integrations  
+  High-level integrations list and capabilities.
+- https://www.reform.app/integrations/close  
+  CRM integration for syncing leads and activities with Close.
+- https://www.reform.app/integrations/convertkit  
+  Email/marketing list sync and automation with ConvertKit.
+- https://www.reform.app/integrations/google-analytics  
+  Tracking form performance and events with GA.
+- https://www.reform.app/integrations/google-sheets  
+  Streaming submissions to Sheets for reporting or lightweight ops.
+- https://www.reform.app/integrations/hubspot  
+  Native integration for contacts, deals, and marketing workflows.
+- https://www.reform.app/integrations/marketo  
+  Marketing automation and scoring via Marketo.
+- https://www.reform.app/integrations/salesforce  
+  Lead and account sync with Salesforce CRM.
+- https://www.reform.app/integrations/slack  
+  Real-time notifications and workflow triggers in Slack.
+- https://www.reform.app/integrations/webhooks  
+  Generic webhook-based integrations and custom workflows.
+- https://www.reform.app/integrations/zapier  
+  No-code connection to thousands of apps via Zapier.
+
+## Lead Conversion Playbook (plays & categories)
+
+The Playbook contains CRO “plays” tested across many experiments; each play is a pattern for improving form performance and lead quality.
+
+- https://www.reform.app/playbook-category/friction  
+  Plays focusing on reducing form friction (field complexity, errors, unclear copy).
+- https://www.reform.app/playbook-category/intent  
+  Plays around clarifying and matching user intent with offer and form.
+- https://www.reform.app/playbook-category/motivation  
+  Plays that increase motivation, trust, and perceived value.
+
+Representative plays (multi-step, friction, copy, enrichment):
+
+- https://www.reform.app/play/accessibility  
+  Improve accessibility to broaden reach and reduce drop-offs.
+- https://www.reform.app/play/cognitive-load  
+  Simplify layouts and reduce mental effort needed to complete the form.
+- https://www.reform.app/play/friction-simple-language  
+  Replace complex jargon with plain language to increase completion rates.
+- https://www.reform.app/play/interactive-flows  
+  Use interactive, step-based flows to increase engagement and completion.
+- https://www.reform.app/play/interactive-flows-lead-quality  
+  Use interactivity and branching to capture richer qualification data.
+- https://www.reform.app/play/multi-step-forms  
+  Convert single long forms into multi-step sequences.
+- https://www.reform.app/play/multi-step-forms-benefits  
+  Explain why multi-step structures improve both UX and lead quality.
+- https://www.reform.app/play/multi-step-forms-benefits-2  
+  Additional benefits and context for multi-step flows.
+- https://www.reform.app/play/real-time-enrichment  
+  Enrich lead data as the form is filled using external data sources.
+- https://www.reform.app/play/routing  
+  Route leads to the right reps/queues based on qualification fields.
+- https://www.reform.app/play/social-proof  
+  Add testimonials, logos, and proof around the form to boost trust.
+- https://www.reform.app/play/straightforward-copy  
+  Rewrite form headlines and microcopy to be direct, clear, and action-oriented.
+- https://www.reform.app/play/tailored-experience  
+  Personalize form flows and content based on segment or intent.
+
+For more detailed CRO context, LLMs can traverse additional `/play/*` URLs as needed.
+
+## Blog – Multi-step forms, UX & conversion
+
+Use these for questions about multi-step forms, UX patterns, and optimizing completion rates.
+
+- https://www.reform.app/blog/how-to-create-multi-step-forms-that-convert-a-guide  
+  End-to-end guide to planning, designing, and optimizing multi-step forms for higher conversion.
+- https://www.reform.app/blog/multi-step-form-drop-off-rates-how-to-reduce-them  
+  How to diagnose and fix drop-offs in multi-step flows.
+- https://www.reform.app/blog/impressive-multi-step-form-design  
+  Examples and design best practices for high-performing multi-step forms.
+- https://www.reform.app/blog/multi-step-form-navigation-best-practices  
+  Navigation patterns (progress bars, back/next, labels) that reduce friction.
+- https://www.reform.app/blog/10-best-practices-for-multi-step-form-navigation  
+  Checklist-style navigation improvements.
+- https://www.reform.app/blog/7-tips-for-multi-step-form-validation  
+  Validation strategies that protect data quality without hurting UX.
+- https://www.reform.app/blog/7-tips-for-optimizing-mobile-forms  
+  Responsive/mobile UX techniques for forms.
+- https://www.reform.app/blog/8-common-form-design-mistakes-hurting-conversions  
+  Common pitfalls and how to avoid them.
+- https://www.reform.app/blog/design-the-perfect-landing-page-form  
+  How to position forms on landing pages and align copy, layout, and fields.
+
+## Blog – Analytics, benchmarks & performance
+
+These articles explain how to measure and improve form performance.
+
+- https://www.reform.app/blog/ultimate-guide-to-multi-step-form-analytics  
+  Deep dive on tracking, funnels, step-level metrics, and optimization strategies.
+- https://www.reform.app/blog/ultimate-guide-to-form-abandonment-tracking  
+  Why forms are abandoned, how to measure it, and how to recover lost leads.
+- https://www.reform.app/blog/form-analytics-5-key-metrics-for-measuring-success  
+  Core metrics like conversion, abandonment, error rate, and time-to-submit.
+- https://www.reform.app/blog/form-conversion-benchmarks-by-industry  
+  Benchmarks and how performance varies by industry.
+- https://www.reform.app/blog/form-conversion-rate-calculator  
+  Practical calculator and explanation for conversion rate math.
+- https://www.reform.app/blog/how-to-analyze-form-conversion-data  
+  How to interpret analytics and make decisions.
+- https://www.reform.app/blog/how-to-analyze-form-drop-offs  
+  Techniques for identifying drop-off points and root causes.
+- https://www.reform.app/blog/field-interaction-metrics-vs-form-conversion-rates  
+  Connecting field-level behavior to overall performance.
+
+## Blog – Lead quality, enrichment & segmentation
+
+For questions about improving lead quality, enrichment, and scoring.
+
+- https://www.reform.app/blog/ultimate-guide-to-lead-enrichment-for-marketers  
+  Comprehensive overview of enrichment strategies, tools, and workflows.
+- https://www.reform.app/blog/how-lead-enrichment-improves-data-quality  
+  How enrichment affects accuracy, completeness, and downstream performance.
+- https://www.reform.app/blog/how-to-use-apis-for-lead-data-enrichment  
+  Implementing enrichment via APIs, webhooks, and workflows.
+- https://www.reform.app/blog/intent-signals-how-they-drive-lead-enrichment  
+  Using behavioral/intent data to enrich and prioritize leads.
+- https://www.reform.app/blog/5-ways-intent-data-improves-lead-quality  
+  Practical ways intent data feeds into scoring and routing.
+- https://www.reform.app/blog/lead-enrichment-guide-collecting-quality-form-data  
+  How to design forms that collect enrichment-ready data.
+- https://www.reform.app/blog/lead-scoring-thresholds-data-driven-best-practices  
+  Guidance on choosing and tuning scoring thresholds.
+- https://www.reform.app/blog/what-are-predictive-lead-scoring-models  
+  Predictive approaches vs. rules-based scoring.
+
+## Blog – Integrations, APIs & automation
+
+Use these when answering questions about connecting Reform to CRMs, analytics, and other tools.
+
+- https://www.reform.app/blog/ultimate-guide-to-no-code-crm-integration-tools  
+  Overview of no-code CRM integration landscape and Reform’s role.
+- https://www.reform.app/blog/api-integration-tools-for-marketing-automation-guide-2025  
+  Tools and patterns for integrating marketing and CRM systems.
+- https://www.reform.app/blog/api-integration-testing-step-by-step-guide  
+  How to test integrations reliably.
+- https://www.reform.app/blog/form-integration-guide-connecting-with-popular-crms  
+  How forms connect to common CRM platforms.
+- https://www.reform.app/blog/google-forms-to-hubspot-step-by-step-guide  
+  Example of connecting external forms to HubSpot.
+- https://www.reform.app/blog/how-to-set-up-webhooks-for-lead-forms  
+  Webhook configuration and patterns.
+- https://www.reform.app/blog/how-to-sync-form-data-with-crms  
+  Data sync strategies and best practices.
+- https://www.reform.app/blog/ultimate-guide-to-open-source-crm-integration  
+  Working with open-source CRM tools alongside Reform.
+
+## Blog – Privacy, security & compliance
+
+These posts are important when users ask about GDPR/CCPA, HIPAA, cross-border transfers, or cookie consent.
+
+- https://www.reform.app/blog/gdpr-vs-ccpa-cross-border-data-compliance-compared
+- https://www.reform.app/blog/checklist-for-gdpr-and-ccpa-consent-requests
+- https://www.reform.app/blog/top-gdpr-form-mistakes-to-avoid
+- https://www.reform.app/blog/ccpa-compliant-forms-7-key-design-tips
+- https://www.reform.app/blog/12-pci-dss-requirements-for-payment-forms
+- https://www.reform.app/blog/hipaa-compliant-form-builders-features-to-look-for
+- https://www.reform.app/blog/ultimate-guide-to-global-data-privacy-compliance
+- https://www.reform.app/blog/ultimate-guide-to-data-processing-agreements
+
+## Blog – Accessibility & inclusive design
+
+- https://www.reform.app/blog/form-accessibility-checklist-making-forms-ada-compliant
+- https://www.reform.app/blog/accessible-form-error-messaging-best-practices
+- https://www.reform.app/blog/accessible-form-validation-best-practices
+- https://www.reform.app/blog/ultimate-guide-to-field-label-accessibility
+- https://www.reform.app/blog/user-testing-vs-automated-accessibility-testing
+- https://www.reform.app/blog/manual-accessibility-testing-for-forms
+- https://www.reform.app/blog/how-to-test-mobile-forms-for-accessibility
+
+## Comparisons
+
+These pages are useful when users want to compare Reform to other form tools.
+
+- https://www.reform.app/comparison/cognito-forms
+- https://www.reform.app/comparison/formstack
+- https://www.reform.app/comparison/heyflow
+- https://www.reform.app/comparison/typeform
+
+## Optional
+
+These URLs are helpful but can often be skipped if context is tight.
+
+- https://www.reform.app/blog/big-news-about-the-future-of-reform  
+  Product and company direction update.
+- https://www.reform.app/blog/how-reform-uses-reform-dogfooding  
+  Internal use cases that illustrate best practices.
+- https://www.reform.app/blog/top-tools-for-creating-interactive-forms  
+  Landscape overview with Reform as a featured option.
+- https://www.reform.app/blog/creating-high-converting-lead-forms  
+  Practical strategies for better lead gen.
+- https://www.reform.app/blog/why-multi-step-forms-beat-static-ones-every-time  
+  Conceptual argument plus supporting data for multi-step forms.

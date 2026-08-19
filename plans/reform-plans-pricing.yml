@@ -1,7 +1,19 @@
 name: Reform Plans and Pricing
-description: Pricing plans for Reform, a conversion-optimized form builder offering free, Basic, and Pro tiers with varying levels of features, integrations, and team access.
-version: '0.1'
+generated: '2026-08-14'
+method: searched
+source: https://www.reform.app/pricing
+http_status: 200
+description: Pricing plans for Reform, a conversion-optimized form builder offering free, Basic, and Pro tiers with varying levels of features, integrations, and team access, plus a custom "Done for you" service delivered by FunnelEnvy. Verified against the live pricing page on 2026-08-14.
+version: '0.2'
 url: https://www.reform.app/pricing
+plan_count: 4
+currency: USD
+billing_periods: [monthly, annual]
+annual_discount: '2 months free (~16%)'
+notes:
+  - The pricing page now names the ConvertKit integration by its current brand, "Kit". Both spellings appear in Reform's own material.
+  - Salesforce is still listed as "(coming soon)" on the Pro tier.
+  - No usage-based, per-submission or API pricing exists — Reform publishes no API.
 plans:
   - name: Free
     description: Basic form building access for individual users exploring the platform. Forms cannot be published or shared publicly on this tier.

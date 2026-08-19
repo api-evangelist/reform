@@ -1,0 +1,49 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.reform.app/article/13-form-events
+description: >-
+  Reform publishes NO client SDK. There is no first-party package on npm, PyPI,
+  RubyGems, Packagist, NuGet, Maven Central, crates.io or pkg.go.dev — searched
+  2026-08-14 and confirmed by name probes against registry.npmjs.org (the
+  @reform, reform-app, @reformapp and reform.app names all 404) and by the
+  GitHub orgs: github.com/ReformApp holds one unrelated PHP repo (a Google API
+  client wrapper, last pushed 2022) and github.com/FunnelEnvy — the acquirer —
+  publishes agency tooling, not a Reform client library.
+  The single first-party distributable is the browser embed loader, served from
+  Reform's own CDN with no registry entry.
+sdk_count: 0
+packages:
+  - language: javascript
+    registry: cdn
+    name: reform-embed
+    url: https://embed.reform.app/v1/embed.js
+    install: '<script id="reform-script" async src="https://embed.reform.app/v1/embed.js"></script>'
+    official: true
+    version: null
+    published: null
+    kind: embed-loader
+    http_status: 200
+    size_bytes: 5864
+    note: >-
+      Checked 2026-08-14, nothing to record. The distribution is CDN-only and
+      unpinned below the major: the URL pins /v1/ and nothing finer, the minified
+      bundle carries no version string, and there is no registry metadata
+      endpoint (no npm/jsDelivr/unpkg package) to query. A consumer cannot tell
+      which build they are loading either — that is the finding. This is an
+      embed/mount loader for the hosted form iframe, not an API client library,
+      so it is NOT counted as an SDK and no SDKs pointer is emitted in apis.yml.
+registries_checked:
+  - {registry: npm, endpoint: 'https://registry.npmjs.org/-/v1/search + name probes', result: no first-party package}
+  - {registry: npm, probe: '@reform/react', status: 404}
+  - {registry: npm, probe: reform-app, status: 404}
+  - {registry: npm, probe: '@reformapp/react', status: 404}
+  - {registry: npm, probe: reform.app, status: 404}
+  - {registry: github, probe: 'https://api.github.com/orgs/reformapp', status: 200, result: '1 public repo, unrelated to the product'}
+  - {registry: github, probe: 'https://api.github.com/orgs/heyreform', status: 404}
+false_positives:
+  - >-
+    npm packages named @playfast/reform* are an unrelated headless UI framework
+    from a different author and are NOT Reform (reform.app) client libraries.
+  - >-
+    trailblazer/reform (Ruby), react-reform and rescript-reform are unrelated
+    open-source form libraries that share the name.

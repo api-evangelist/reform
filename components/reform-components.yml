@@ -1,0 +1,146 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.reform.app/article/13-form-events
+docs:
+  - https://docs.reform.app/article/5-embedding-your-first-form
+  - https://docs.reform.app/article/13-form-events
+  - https://docs.reform.app/article/31-event-handlers
+  - https://docs.reform.app/article/15-using-your-own-html-form
+  - https://docs.reform.app/article/9-prepopulating
+  - https://docs.reform.app/article/75-custom-code-in-reform
+description: >-
+  Reform's client-side embed layer — the only first-party code a developer
+  actually integrates, since Reform publishes no server-side REST API or SDK.
+  A single CDN-hosted loader (embed.reform.app/v1/embed.js) mounts a hosted form
+  into a target element, auto-resizes it, forwards parent-page query parameters,
+  and exposes a parent-page event API. A separate "headless" mode lets a
+  developer post their own HTML form directly to Reform instead of embedding an
+  iframe.
+libraries:
+  - name: Reform embed loader
+    url: https://embed.reform.app/v1/embed.js
+    global: window.Reform
+    distribution: cdn
+    versioning: major-pinned path (/v1/); no exact version is exposed in the URL or the bundle
+    purpose: Loads and mounts the hosted form iframe and dispatches parent-page events.
+    catalogued_in: packages/reform-packages.yml
+
+families:
+  embedded_form:
+    description: >-
+      The default integration. A generated <script> + target <div> pair mounts
+      the hosted Reform form in an iframe on the customer's page.
+    where: Reform dashboard → form → Share → Embed
+    components:
+      - name: Embedded Form (iframe)
+        loader: https://embed.reform.app/v1/embed.js
+        init: Reform('init', { url, target, background, ...eventHandlers })
+        options:
+          - {name: url, description: The hosted form URL to mount.}
+          - {name: target, description: 'CSS selector of the container element, e.g. #my-reform.'}
+          - {name: background, description: "Set to 'transparent' to blend the form with the host page."}
+        behaviours:
+          - Auto-resizes the iframe to the content so respondents never see a scrollbar.
+          - Scrolls to the top of the form on every page change in a multi-page form.
+          - Forwards query parameters from the parent page into the embedded form (used for prefill and attribution).
+          - Queues events fired before the handlers finish loading and replays them once loading completes.
+  hosted_form:
+    description: Reform-hosted, shareable form page — no code required.
+    components:
+      - name: Hosted Form Page
+        host: https://forms.reform.app
+        url_shape: https://forms.reform.app/<workspace>/<form-slug>[/<page>]
+        description: >-
+          The public form URL produced when a form is published. Also the target
+          of the embed iframe and the destination the headless flow redirects to.
+  headless_form:
+    description: >-
+      Inline integration without an iframe. The developer writes their own HTML
+      <form>, pointing it at the Reform-generated form action, and names each
+      input so it maps to a Reform block.
+    where: Reform dashboard → form → Share → Headless
+    plan: Basic and above ("Headless forms for full design control")
+    components:
+      - name: Headless HTML Form
+        field_naming: answers[<block-id>]
+        block_id_source: Form builder → block gear icon → Copy ID (a UUID)
+        rules:
+          - Input type must match the Reform block type (e.g. <input type="number"> for a number block).
+          - Required Reform blocks should carry the HTML `required` attribute; browser validation is recommended.
+          - "'Select multiple' blocks use one <input type=\"checkbox\"> per option and should not be marked required."
+          - File-upload blocks are NOT supported in headless mode.
+          - Custom code features and some integrations are not available in headless mode.
+        failure_mode: >-
+          If browser validation is skipped and invalid data is posted, the
+          respondent is redirected to the hosted version of the form to see the
+          error messages.
+        redirect_behaviour: >-
+          Single-page forms redirect to the Outcome configured in the builder;
+          multi-page forms redirect according to the builder's logic rules.
+
+events:
+  parent_page:
+    description: >-
+      Events the embedding page can listen for, delivered via postMessage from
+      the form iframe. Configured either in the dashboard (Code → Parent page
+      events) or inline in the embed snippet. Each handler receives a `context`
+      object whose contents depend on the event.
+    plan: Pro
+    docs: https://docs.reform.app/article/13-form-events
+    handlers:
+      - {name: onFormLoaded, description: The first page of the form has loaded.}
+      - {name: onFormCompleted, description: The form was submitted with valid answers and the answers were recorded. Named onFormComplete in the embed-snippet example; context carries `answers`.}
+      - {name: onPageChanged, description: The page changed, after a submission or via the navigation arrows. Named onPageChange in the embed-snippet example.}
+      - {name: onPageSubmitted, description: Fires before a page is submitted.}
+      - {name: onPageResized, description: The iframe resized after a page change. The event exposes preventScrolling().}
+      - {name: onInputChanged, description: An input field value changed.}
+    caveats:
+      - >-
+        Handlers load asynchronously; the embed snippet replays events that fired
+        before the handlers were ready.
+      - >-
+        If onFormComplete is async, a custom redirect will not fire until the
+        handler resolves — keep it short.
+    naming_inconsistency: >-
+      Reform's own docs use two spellings for three of these events
+      (onFormCompleted/onFormComplete, onPageChanged/onPageChange,
+      onInputChanged/onInput). Both spellings are recorded here verbatim rather
+      than normalised.
+  in_form:
+    description: >-
+      Custom JavaScript run inside the form itself (dashboard → Code → Form
+      events). Used for custom validation and value formatting. Each handler
+      receives a `context` object and may return a result object.
+    plan: Pro
+    docs: https://docs.reform.app/article/31-event-handlers
+    handlers:
+      - {name: onFormLoaded, description: Runs once after the first page of the form is loaded.}
+      - name: onInput
+        description: >-
+          Runs after an input value changes. May return
+          "{type: 'error', error: <message>}" to block the value, or
+          "{type: 'success', answer: <value>}" to reformat it.
+      - name: onPageSubmitted
+        description: >-
+          Runs after a page is submitted but before the request reaches the
+          backend. May return
+          "{type: 'error', errors: {<block-id>: <message>}}" or
+          "{type: 'success', values: {<block-id>: <value>}}".
+      - {name: onValidationFailed, description: Runs when a submitted page comes back with validation errors.}
+      - {name: onPageChanged, description: Runs after the respondent moves to the next page.}
+      - {name: onFormCompleted, description: Runs after the submission is saved and just before the outcome is displayed.}
+
+prefill:
+  description: >-
+    Hidden fields can be pre-populated from URL query parameters, either by the
+    hidden field's name (recommended) or by its block UUID.
+  by_name: https://forms.reform.app/<workspace>/<form>/<page>?user_id=1234
+  by_block_id: https://forms.reform.app/<workspace>/<form>?<block-uuid>=John%20Doe
+  docs: https://docs.reform.app/article/9-prepopulating
+
+styling:
+  levels:
+    - {name: Brand CSS, scope: team, description: Applies to every form by default.}
+    - {name: Form CSS, scope: form, description: Overrides or supplements Brand CSS; takes precedence.}
+  plan: Pro
+  docs: https://docs.reform.app/article/25-custom-css
