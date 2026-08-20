@@ -24,6 +24,17 @@ tags:
   - Form Builder
   - Lead Generation
   - Headless Forms
+  - Webhook
+  - No-Code
+  - Integration
+  - CRM
+  - Conversion Rate Optimization
+  - Embeddable Components
+tags_raw:
+  - Forms
+  - Form Builder
+  - Lead Generation
+  - Headless Forms
   - Webhooks
   - No-Code
   - Integrations
@@ -37,6 +48,12 @@ apis:
     humanURL: https://docs.reform.app/
     baseURL: https://forms.reform.app
     tags:
+      - Forms
+      - Submissions
+      - Webhook
+      - Headless Forms
+      - Lead Generation
+    tags_raw:
       - Forms
       - Submissions
       - Webhooks
