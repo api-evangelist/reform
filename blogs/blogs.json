@@ -5,7 +5,7 @@
       "source": "https://www.reform.app/blog/rss.xml",
       "feed_url": "https://www.reform.app/blog/rss.xml",
       "title": "",
-      "saved": 50,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -13,10 +13,16 @@
       "feed_url": "https://docs.reform.app/",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
+    },
+    {
+      "source": "https://docs.reform.app/article/49-building-your-first-form",
+      "feed_url": "https://docs.reform.app/article/49-building-your-first-form",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-08-15T12:11:08Z",
-  "post_count": 144
+  "fetched": "2026-08-22T20:20:02Z",
+  "post_count": 157
 }
