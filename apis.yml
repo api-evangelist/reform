@@ -1,5 +1,16 @@
 name: Reform
 description: Reform is a conversion-focused, no-code form builder for B2B and SaaS teams, acquired by conversion-rate-optimization agency FunnelEnvy. It builds multi-step forms with conditional logic, lead qualification and enrichment, and syncs submissions to CRMs and marketing platforms. Reform publishes no REST API, SDK or OpenAPI definition; its integration surface is three published pieces — a signed outbound webhook (form.submitted, HMAC-SHA256), a CDN-hosted browser embed loader with a parent-page event API, and a headless mode that posts your own HTML form to Reform using answers[block-id] field naming.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
