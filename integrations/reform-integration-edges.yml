@@ -1,0 +1,195 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/reform/integrations
+checked:
+- https://composio.dev/toolkits/reform
+- https://monid.ai/tools/reform
+- https://n8n.io/integrations/reform/
+- https://zapier.com/apps/reform/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: reform
+  url: https://zapier.com/apps/reform/integrations
+  external_url: https://www.reform.app/
+  partner_tier: BRONZE
+  triggers:
+  - key: new_submission
+    label: New Response
+  actions: []
+  searches: []
+edges:
+- partner_name: Bento
+  partner: bento
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/bento
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://bentonow.com/
+- partner_name: Nusii Proposals
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/nusii-proposals
+  direction: third-party
+  category: Proposal & Invoice Management
+  partner_url: https://zapier.com/nusii.com
+- partner_name: GitHub
+  partner: github
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/github
+  direction: third-party
+  category: Developer Tools
+  partner_url: https://github.com/
+- partner_name: Textmagic
+  partner: textmagic
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/textmagic
+  direction: third-party
+  category: Communication
+  partner_url: https://www.textmagic.com/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: Telegram
+  partner: telegram
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/telegram
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://telegram.org/
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: Suiteshare
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/reform/integrations/suiteshare
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://suiteshare.com/
+templates:
+- title: Add new Reform responses to Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/reform/833481/add-new-reform-responses-to-google-sheets-rows
+  apps:
+  - reform
+  - google-sheets
+- title: Add new Reform respondents as Klaviyo subscribers
+  url: https://zapier.com/apps/klaviyo/integrations/reform/833520/add-new-reform-respondents-as-klaviyo-subscribers
+  apps:
+  - reform
+  - klaviyo
+- title: Add new Reform responses to Airtable
+  url: https://zapier.com/apps/airtable/integrations/reform/833474/add-new-reform-responses-to-airtable
+  apps:
+  - reform
+  - airtable
+- title: Add new Reform responses as Notion database items
+  url: https://zapier.com/apps/notion/integrations/reform/833486/add-new-reform-responses-as-notion-database-items
+  apps:
+  - reform
+  - notion
+- title: Post new Reform responses to Slack
+  url: https://zapier.com/apps/reform/integrations/slack/833488/post-new-reform-responses-to-slack
+  apps:
+  - reform
+  - slack
+- title: Add new Reform respondents as Kit subscribers
+  url: https://zapier.com/apps/kit/integrations/reform/833492/add-new-reform-respondents-as-kit-subscribers
+  apps:
+  - reform
+  - kit
+- title: Add new Reform respondents as Mailchimp subscribers
+  url: https://zapier.com/apps/mailchimp/integrations/reform/833497/add-new-reform-respondents-as-mailchimp-subscribers
+  apps:
+  - reform
+  - mailchimp
+- title: Add new Reform respondents as Close contacts
+  url: https://zapier.com/apps/close/integrations/reform/833501/add-new-reform-respondents-as-close-contacts
+  apps:
+  - reform
+  - close
+- title: Send Discord channel messages for new Reform responses
+  url: https://zapier.com/apps/discord/integrations/reform/833509/send-discord-channel-messages-for-new-reform-responses
+  apps:
+  - reform
+  - discord
+- title: Add new Reform respondents as ActiveCampaign contacts
+  url: https://zapier.com/apps/activecampaign/integrations/reform/833526/add-new-reform-respondents-as-activecampaign-contacts
+  apps:
+  - reform
+  - activecampaign
+- title: Create Intercom users from new Reform responses
+  url: https://zapier.com/apps/intercom/integrations/reform/833531/create-intercom-users-from-new-reform-responses
+  apps:
+  - reform
+  - intercom
+- title: Add Reform respondents as Pipedrive persons
+  url: https://zapier.com/apps/pipedrive/integrations/reform/833536/add-reform-respondents-as-pipedrive-persons
+  apps:
+  - reform
+  - pipedrive
+template_total: 43
