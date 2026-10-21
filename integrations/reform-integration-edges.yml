@@ -8,6 +8,7 @@ checked:
 - https://n8n.io/integrations/reform/
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/reform/integrations
+- hubspot/integrations/hubspot-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -167,6 +168,23 @@ edges:
   direction: third-party
   category: Ads & Conversion
   partner_url: https://suiteshare.com/
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/reform-by-funnelenvy-2833865
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Reform
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: FORM_BUILDER
 templates:
 - title: Add new Reform responses to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/reform/833481/add-new-reform-responses-to-google-sheets-rows

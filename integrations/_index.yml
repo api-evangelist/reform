@@ -156,3 +156,16 @@
   relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
+- slug: reform-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: FORM_BUILDER
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/reform-by-funnelenvy-2833865
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
