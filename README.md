@@ -64,47 +64,124 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Reform is a developer-first, conversion-optimized form builder with a REST API for creating type-safe forms, managing form definitions, collecting submissions, and embedding forms in web applications including React. It offers headless form capabilities, webhooks, and deep integrations with CRMs and marketing platforms.
+Reform is a conversion-focused, no-code form builder for B2B and SaaS teams, acquired by conversion-rate-optimization agency FunnelEnvy. It builds multi-step forms with conditional logic, lead qualification and enrichment, and syncs submissions to CRMs and marketing platforms. Reform publishes no REST API, SDK or OpenAPI definition; its integration surface is three published pieces — a signed outbound webhook (form.submitted, HMAC-SHA256), a CDN-hosted browser embed loader with a parent-page event API, and a headless mode that posts your own HTML form to Reform using answers[block-id] field naming.
 
-## Links
+**Areas:** Forms · Form Builder · Lead Generation · Headless Forms · Webhook · No-Code · Integration · CRM · Conversion Rate Optimization · Embeddable Components
 
-- **Website:** https://www.reform.app/
-- **Documentation:** https://docs.reform.app/
-- **Pricing:** https://www.reform.app/pricing
-- **Blog:** https://www.reform.app/blog
-- **LinkedIn:** https://www.linkedin.com/company/reformapp
-- **X:** https://x.com/heyreform
+## Reform on APIs.io
 
-## APIs.json
+Everything profiled for Reform is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/reform/](https://apis.io/providers/reform/)** — or go straight to one of the APIs or properties below.
 
-This repository contains an APIs.json profile for Reform, cataloging its public API surface and associated resources.
+### APIs (1)
 
-- [apis.yml](apis.yml) — Main APIs.json index
-- [llms/reform-llms.txt](llms/reform-llms.txt) — Reform's own llms.txt, saved verbatim from https://www.reform.app/llms.txt
-- [asyncapi/reform-webhooks.yml](asyncapi/reform-webhooks.yml) — The `form.submitted` webhook contract (HMAC-SHA256 `Signature` header)
-- [components/reform-components.yml](components/reform-components.yml) — Embed loader, hosted forms, headless forms, and the two event APIs
-- [packages/reform-packages.yml](packages/reform-packages.yml) — Distribution surface (no SDK exists; one CDN embed loader)
-- [conventions/reform-conventions.yml](conventions/reform-conventions.yml) — Cross-cutting integration semantics
-- [authentication/reform-authentication.yml](authentication/reform-authentication.yml) — Credential model (no API credentials are issued)
-- [data-model/reform-data-model.yml](data-model/reform-data-model.yml) — Form → Block → Submission → Answer entity graph
-- [conformance/reform-conformance.yml](conformance/reform-conformance.yml) — Standards conformance, asserted and denied, with evidence
-- [lifecycle/reform-lifecycle.yml](lifecycle/reform-lifecycle.yml) — Versioning, deprecation, changelog, status page (all absent) and decay signals
-- [security/reform-trust-center.yml](security/reform-trust-center.yml) — SOC 2 / ISO 27001 / GDPR / DPF posture
-- [security/reform-domain-security.yml](security/reform-domain-security.yml) — TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe
-- [well-known/reform-well-known.yml](well-known/reform-well-known.yml) — `/.well-known/` probe across all five live hosts (no documents found)
-- [plans/reform-plans-pricing.yml](plans/reform-plans-pricing.yml) — API Commons Plans 0.1
-- [rate-limits/reform-rate-limits.yml](rate-limits/reform-rate-limits.yml) — API Commons Rate Limits 0.1
-- [finops/reform-finops.yml](finops/reform-finops.yml) — FinOps Framework 1.0 FOCUS-aligned cost guidance
+- [Reform Forms](https://apis.io/apis/reform/reform-forms/) — Reform's public integration surface. It is not a REST management API — no endpoint exists to create, read or update forms and submissions. What Reform…
 
-### Note on Reform's API surface
+### Published properties
 
-Reform publishes **no REST API, SDK, OpenAPI definition or developer portal**. The host
-`api.reform.app` — recorded as the API base in an earlier round of this profile — does not
-resolve (NXDOMAIN as of 2026-08-14). Reform's real, documented integration surface is three
-things: a signed outbound `form.submitted` webhook, a CDN-hosted browser embed loader with a
-parent-page event API, and a "headless" mode that posts your own HTML form to
-`forms.reform.app`. Those are what this profile now describes.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Maintainer
+#### AsyncAPI (1)
 
-Kin Lane — kin@apievangelist.com
+Event-driven and webhook contracts.
+
+- [Reform Webhooks](https://apis.io/asyncapis/reform/reform-webhooks/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Reform Context](https://apis.io/jsonld/reform/reform-context/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Reform Authentication](https://apis.io/security/reform/reform-authentication/)
+- [Reform Domain Security](https://apis.io/security/reform/reform-domain-security/)
+- [Reform Trust Center](https://apis.io/security/reform/reform-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Reform Plans Pricing](https://apis.io/plans/reform/reform-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Reform Rate Limits](https://apis.io/rate-limits/reform/reform-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Reform Finops](https://apis.io/finops/reform/reform-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.reform.app/)
+- [Documentation](https://docs.reform.app/)
+- [Getting started](https://docs.reform.app/article/49-building-your-first-form)
+- [Pricing](https://www.reform.app/pricing)
+- [Sign up](https://dashboard.reform.app/register)
+- [Support](https://docs.reform.app/)
+- [Blog](https://www.reform.app/blog)
+- [Terms of service](https://www.reform.app/legal/terms-of-service)
+
+## API Evangelist rating
+
+**Kin Score 48.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 81.6 |
+
+**Agent readiness 22.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 25.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/reform/](https://apis.io/providers/reform/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Reform: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/reform/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
